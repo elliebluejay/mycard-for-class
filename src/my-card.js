@@ -36,12 +36,14 @@ export class MyCard extends LitElement {
         display: block;
       }
 
-h1 {
+      h1 {
+        margin-left: 16px;
         font-size: 36px;
         font-family: Tahoma, sans-serif;
       }
 
       h2 {
+        margin: 16px;
         font-size: 18px;
         font-family: Tahoma, sans-serif;
       }
@@ -61,6 +63,7 @@ h1 {
       }
 
       .card {
+        margin: 16px;
         border: 4px dashed purple;
         border-radius: 8px;
         padding: 16px;
@@ -70,6 +73,7 @@ h1 {
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3); 
         overflow: auto;
       }
+
 
     h2 { font-family: Tahoma, sans-serif; font-size: 20px; color: purple; margin: 0 0 8px 0; }
     p { font-family: Tahoma, sans-serif; font-size: 16px; color: black; margin: 0 0 16px 0; }
