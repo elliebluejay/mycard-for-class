@@ -16,24 +16,30 @@ export class MyCard extends LitElement {
   static get properties() {
     return {
       title: { type: String },
-      description: { type: String },
+      /* description: { type: String }, */
       image: { type: String },
       link: { type: String },
+      fancy: { type: Boolean, reflect: true }
     };
   }
 
   constructor() {
     super();
     this.title = "Insert Title Here";
-    this.description = "Insert Description Here";
+    /* this.description = "Insert Description Here"; */
     this.image = "https://ist.psu.edu/current-students/career-solutions/internship-program";
     this.link = "#";
+    this.fancy = false;
   }
 
   static get styles() {
     return css`
       :host {
-        display: block;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+      :host([fancy]) .card {
+        background-color: var(--my-card-fancy-bg, lightblue);
       }
 
       h1 {
@@ -75,8 +81,37 @@ export class MyCard extends LitElement {
       }
 
 
-    h2 { font-family: Tahoma, sans-serif; font-size: 20px; color: purple; margin: 0 0 8px 0; }
-    p { font-family: Tahoma, sans-serif; font-size: 16px; color: black; margin: 0 0 16px 0; }
+    
+    .card:hover {
+      background-color: #e0c3fc; 
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+
+    
+    :host([fancy]) .card {
+      background-color: var(--my-card-fancy-bg, lightblue);
+    }
+
+    
+    :host([fancy]) .card:hover {
+      background-color: #ffb3b3; 
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+
+
+    h2 { 
+      font-family: Tahoma, sans-serif; 
+      font-size: 20px; 
+      color: purple; 
+      margin: 0 0 8px 0; 
+    }
+    p { 
+      font-family: Tahoma, sans-serif; 
+      font-size: 16px; 
+      color: black; 
+      margin: 0 0 16px 0; }
 
       button {
         font-family: Tahoma, sans-serif;
@@ -98,14 +133,37 @@ export class MyCard extends LitElement {
       }
 
       .card-image {
-        max-width: 300px;
-        object-fit: cover;
+        width: 100%;             
+        height: 150px;           
+        object-fit: cover; 
         border-radius: 4px;
         margin-bottom: 16px;
-        width: 64%;
         border: 2px solid white; 
         margin: 0 auto 16px auto;
         display: block;
+      }
+
+      details summary {
+      text-align: left;
+      font-size: 16px;
+      padding: 8px 0;
+      cursor: pointer;
+    }
+
+      details[open] summary {
+      font-weight: bold;
+    }
+
+      details div {
+      text-align: left;
+      padding: 8px;
+      height: 70px;
+      overflow: auto;
+    }
+
+      desc {
+      padding: 8px;
+      overflow: auto;
       }
 
       .details {
@@ -125,21 +183,51 @@ export class MyCard extends LitElement {
     `;
   }
 
+  
+
+  penChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
+  }
+
 
   render() {
     return html`
          <div class="card">
           <h2>${this.title}</h2>
-          <p>${this.description}</p>
+          <!-- <p>${this.description}</p> -->
             
+            <slot name="description">
+          <p></p>
+        </slot>
             <img class="card-image"
               src="${this.image}" 
               alt="${this.title}">
             <a href="${this.link}">
               <button>Details</button>
             </a>
+            <br>
+            <br>
+            <div>
+              <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+              <summary>Description</summary>
+              <div class="desc">
+                <slot>Here is my text.</slot>
+              </div>
+              </details>
+            </div>
           </div>
     `;
+  }
+
+  openChanged(event) {
+    console.log(event.target);
+    this.fancy = event.target.open;
   }
 
 }

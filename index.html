@@ -20,6 +20,12 @@
       margin: 16px;
     }
   </style>
+
+  <style>
+  my-card[fancy] {
+    --my-card-fancy-bg: #b8f1f5;
+  }
+  </style>
   <title>polaris-chip / my-card</title>
 </head>
 
@@ -39,45 +45,61 @@
 
 <my-card 
   title="Mount Nittany"
-  description="Nittany Mountain, commonly known as Mount Nittany, is a prominent geographic feature in Centre County, Pennsylvania."
   image="https://nittany.org/wp-content/uploads/2018/10/mtnittanyrothrock-web.jpg"
   link="https://nittany.org/">
+  
+  <slot name="description">
+    <strong>Nittany Mountain</strong>, commonly known as Mount Nittany, is a prominent geographic feature in Centre County, Pennsylvania.
+  </slot>
+  
 </my-card>
-<br>
+
 <my-card 
   title="A Cat"
-  description="Cute cat with heterochromia."
   image="https://d2zp5xs5cp8zlg.cloudfront.net/image-88409-800.jpg"
   link="https://www.clearlakevetclinic.com/site/blog/2023/08/30/custest-cat-breeds">
+  
+  <slot name="description">
+    Cute cat with heterochromia.
+  </slot>
+
 </my-card>
-<br>
+
 <my-card 
   title="Beach"
-  description="A beautiful beach. I want to be here right now."
   image="https://www.usatoday.com/gcdn/authoring/authoring-images/2025/02/18/USAT/79093399007-top-world-10-myrtos-beach.jpg?width=1320&height=738&fit=crop&format=pjpg&auto=webp"
   link="https://www.usatoday.com/story/travel/destinations/2025/02/18/best-beaches-in-the-world-2025-tripadvisor/79083750007/">
+  
+  <slot name="description">
+    A beautiful beach. I want to be here right now.
+  </slot>
+  
 </my-card>
-<br>
+
 <my-card 
-  title="Cybersecurity Analytics and Operations"
-  description="I'm studying to get my Bachelor's of Science in Cybersecurity at Penn State."
+  title="Cybersecurity"
   image="https://bulletins.psu.edu/gallery/CYAOP_BS.jpg"
   link="https://bulletins.psu.edu/undergraduate/colleges/information-sciences-technology/cybersecurity-analytics-operations-bs/#text">
+  
+  <slot name="description">
+    I'm studying to get my Bachelor's of Science in Cybersecurity at Penn State.
+  </slot>
+  
 </my-card>
-<br>
+
 <my-card 
   title="Caledonia State Park"
-  description="Caledonia is a beautiful place to go hiking and camping."
   image="https://pennsylvaniastateparks.reserveamerica.com/webphotos/PA/pid880303/0/540x360.jpg"
   link="https://pennsylvaniastateparks.reserveamerica.com/caledonia-state-park/r/facilityDetails.do?contractCode=PA&parkId=880303">
+  
+  <slot name="description">
+    <strong>Caledonia</strong> is a beautiful place to go hiking and camping.
+  </slot>
+
+  
 </my-card>
-<br>
 
 </div>
-
-  
-  
- 
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
